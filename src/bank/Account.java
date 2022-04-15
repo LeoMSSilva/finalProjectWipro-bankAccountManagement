@@ -75,6 +75,8 @@ public abstract class Account {
 		} else {
 			this.balance += value;
 			System.out.printf("\nSuccessfully deposited!\nYour balance is: $ %.2f\n", this.balance);
+			String message = "\nDeposit of:\t$ " + value + "0.\tCurrent balance:\t$ " + this.balance + "0.";
+			generateExtract(account, message);
 		}
 	};
 
