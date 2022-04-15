@@ -24,6 +24,8 @@ public class SpecialAccount extends Account {
 		if (this.balance + limit <= value) {
 			this.balance -= value;
 			System.out.printf("\nWithdrawal was successful!\nThe account balance is: $ %.2f\n", this.balance);
+			String message = "\nWithdrawal from:\t$ " + value + "0.\tCurrent balance:\t$ " + this.balance + "0.";
+			this.generateExtract(account, message);
 		} else {
 			System.err.println(
 					"\nOperation not allowed!\nThe amount you want to withdraw is greater than the amount of your balance plus the limit in your account!");

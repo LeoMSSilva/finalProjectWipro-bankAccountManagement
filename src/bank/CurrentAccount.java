@@ -13,6 +13,8 @@ public class CurrentAccount extends Account {
 		if (this.balance > 0) {
 			this.balance -= value;
 			System.out.printf("\nWithdrawal was successful!\nThe account balance is: $ %.2f\n", this.balance);
+			String message = "\nWithdrawal from:\t$ " + value + "0.\tCurrent balance:\t$ " + this.balance + "0.";
+			this.generateExtract(account, message);
 		} else {
 			System.err.println(
 					"\nOperation not allowed!\nThe balance in your account is less than the amount you want to withdraw!");

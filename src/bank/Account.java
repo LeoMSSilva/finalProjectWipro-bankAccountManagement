@@ -3,6 +3,7 @@ package bank;
 import java.util.Random;
 
 import person.Client;
+import utils.Files;
 
 public abstract class Account {
 	private String number;
@@ -54,6 +55,12 @@ public abstract class Account {
 		this.status = status;
 	}
 
+	public void generateExtract(Account account, String textForFile) {
+		String file = account.getNumber() + ".log";
+		Files files = new Files();
+		files.write(file, textForFile);
+	}
+
 	public void consultAccountData(Account account) {
 		System.out.printf(
 				"Agency: %s - %s\nAccount number: %s\nStatus: %s\nBalance: $ %.2f\nAccount credit card: %s\nClient: %s\n",
@@ -68,6 +75,8 @@ public abstract class Account {
 		} else {
 			this.balance += value;
 			System.out.printf("\nSuccessfully deposited!\nYour balance is: $ %.2f\n", this.balance);
+			String message = "\nDeposit of:\t$ " + value + "0.\tCurrent balance:\t$ " + this.balance + "0.";
+			generateExtract(account, message);
 		}
 	};
 
