@@ -1,7 +1,11 @@
 package main;
+import bank.CreditCard;
+import person.Client;
 
 public class Main {
 	public static void main(String[] args) {
-		System.out.println("Final Project Wipro - Bank Account Management Started");
+		Client client = new Client();
+		CreditCard card = new CreditCard(client);
+		System.out.println(card.getCardNumbering());
 	}
 }

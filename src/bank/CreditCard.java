@@ -1,24 +1,35 @@
 package bank;
 
+import java.util.Random;
+
+import person.Client;
+
 public class CreditCard {
-	
-	private int cardNumber;
-	private double limit;
-	
-	public CreditCard(int cardNumber){
-		this.cardNumber = cardNumber;
-		this.limit = 400;
-	}
-	
-	public int getCardNumber() {
-		return cardNumber;
+	private String cardNumbering;
+	private String CVV;
+	private Client client;
+
+	public CreditCard(Client client) {
+		Random random = new Random();
+		this.cardNumbering = "";
+		for (int i = 0; i < 16; i++) {
+			this.cardNumbering += random.nextInt(10);
+		}
+		for (int i = 0; i < 3; i++) {
+			this.CVV += random.nextInt(10);
+		}
+		this.client = client;
 	}
 
-	public double getLimit() {
-		return limit;
+	public String getCardNumbering() {
+		return cardNumbering;
 	}
-	
-	public void setLimit(double limit) {
-		this.limit = limit;
-	}	
+
+	public String getCVV() {
+		return CVV;
+	}
+
+	public Client getClient() {
+		return client;
+	}
 }
