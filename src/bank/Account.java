@@ -3,6 +3,7 @@ package bank;
 import java.util.Random;
 
 import person.Client;
+import utils.Files;
 
 public abstract class Account {
 	private String number;
@@ -52,6 +53,12 @@ public abstract class Account {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public void generateExtract(Account account, String textForFile) {
+		String file = account.getNumber() + ".log";
+		Files files = new Files();
+		files.write(file, textForFile);
 	}
 
 	public void consultAccountData(Account account) {
