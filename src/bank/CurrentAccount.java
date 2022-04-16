@@ -10,7 +10,7 @@ public class CurrentAccount extends Account {
 
 	@Override
 	public void moneyWithdraw(double value, Account account) {
-		if (this.balance > 0) {
+		if (this.balance > 0 && value <= this.balance) {
 			this.balance -= value;
 			System.out.printf("\nWithdrawal was successful!\nThe account balance is: $ %.2f\n", this.balance);
 			String message = String.format("\nWithdrawal from:\t$ %.2f.\tCurrent balance:\t$ %.2f.", value,
