@@ -63,7 +63,7 @@ public abstract class Account {
 
 	public void consultAccountData(Account account) {
 		System.out.printf(
-				"Agency: %s - %s\nAccount number: %s\nStatus: %s\nBalance: $ %.2f\nAccount credit card: %s\nClient: %s\n",
+				"\nAgency: %s - %s\nAccount number: %s\nStatus: %s\nBalance: $ %.2f\nAccount credit card: %s\nClient: %s\n",
 				account.getAgency().getAgencyNumber(), account.getAgency().getAgencyName(), account.getNumber(),
 				account.getStatus(), account.getBalance(), account.getCreditCrad().getCardNumbering(),
 				account.getClient().getName());
@@ -75,7 +75,7 @@ public abstract class Account {
 		} else {
 			this.balance += value;
 			System.out.printf("\nSuccessfully deposited!\nYour balance is: $ %.2f\n", this.balance);
-			String message = "\nDeposit of:\t$ " + value + "0.\tCurrent balance:\t$ " + this.balance + "0.";
+			String message = String.format("\nDeposit of:\t\t$ %.2f.\tCurrent balance:\t$ %.2f.", value, this.balance);
 			generateExtract(account, message);
 		}
 	};

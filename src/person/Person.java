@@ -44,9 +44,10 @@ public abstract class Person {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public void consultExtract(Account account) {
-		String divisor = "=============================================================";
-		System.out.printf("\n%s\n\t\t\tBank statement\n%s\n", divisor, divisor);
+		String divisor = "===========================================================================";
+		System.out.printf("\n%s\n\t\t\t\tBank Statement\n%s\n", divisor, divisor);
 		String file = account.getNumber() + ".log";
 		Files files = new Files();
 		files.read(file);

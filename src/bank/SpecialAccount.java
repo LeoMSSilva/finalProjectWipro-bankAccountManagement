@@ -20,11 +20,21 @@ public class SpecialAccount extends Account {
 	}
 
 	@Override
+	public void consultAccountData(Account account) {
+		System.out.printf(
+				"\nAgency: %s - %s\nAccount number: %s\nStatus: %s\nBalance: $ %.2f\nLimit: $ %.2f\nAccount credit card: %s\nClient: %s\n",
+				account.getAgency().getAgencyNumber(), account.getAgency().getAgencyName(), account.getNumber(),
+				account.getStatus(), account.getBalance(), getLimit(), account.getCreditCrad().getCardNumbering(),
+				account.getClient().getName());
+	}
+
+	@Override
 	public void moneyWithdraw(double value, Account account) {
 		if (this.balance + limit <= value) {
 			this.balance -= value;
 			System.out.printf("\nWithdrawal was successful!\nThe account balance is: $ %.2f\n", this.balance);
-			String message = "\nWithdrawal from:\t$ " + value + "0.\tCurrent balance:\t$ " + this.balance + "0.";
+			String message = String.format("\nWithdrawal from:\t$ %.2f.\tCurrent balance:\t$ %.2f", value,
+					this.balance);
 			this.generateExtract(account, message);
 		} else {
 			System.err.println(
