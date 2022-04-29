@@ -18,13 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bankAccountManagement.finalProjectWipro.model.Agency;
 import com.bankAccountManagement.finalProjectWipro.service.AgencyService;
 
-	
-	
-	
-	
-	
-	
-	@RestController
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
+@Api(value = "Agency", tags = "Agency", description = "Agency routes")
+@RestController
 @RequestMapping(value = "/agency", consumes = { "application/json" }, produces = { "application/json" })
 @CrossOrigin("*")
 public class AgencyController {
@@ -32,38 +31,45 @@ public class AgencyController {
 	@Autowired
 	private AgencyService agencyService;
 
+	@ApiOperation(value = "Returns an agency by id", notes = "This method returns an agency by id")
 	@GetMapping("/{id}")
-	public ResponseEntity<Agency> GetById(@PathVariable Long id) {
+	public ResponseEntity<Agency> GetById(@ApiParam(value = "id", required = true) @PathVariable Long id) {
 		Agency agency = agencyService.findById(id);
 		return ResponseEntity.ok().body(agency);
 	}
 
+	@ApiOperation(value = "Returns an agency by name", notes = "This method returns an agency by name")
 	@GetMapping("/{name}")
-	public ResponseEntity<Agency> GetById(@PathVariable String name) {
+	public ResponseEntity<Agency> GetById(@ApiParam(value = "Name", required = true) @PathVariable String name) {
 		Agency agency = agencyService.findByAgencyName(name);
 		return ResponseEntity.ok().body(agency);
 	}
 
+	@ApiOperation(value = "Returns all agencys", notes = "This method returns all agencys")
 	@GetMapping
 	public ResponseEntity<List<Agency>> GetAll() {
 		List<Agency> list = agencyService.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 
+	@ApiOperation(value = "Create an agency by id", notes = "This method creates an agency by id")
 	@PostMapping
-	public ResponseEntity<Agency> Post(@RequestBody Agency agency) {
+	public ResponseEntity<Agency> Post(@ApiParam(value = "Agency", required = true) @RequestBody Agency agency) {
 		agencyService.create(agency);
 		return ResponseEntity.status(HttpStatus.GONE).body(agencyService.create(agency));
 	}
 
+	@ApiOperation(value = "Update an agency by id", notes = "This method updates an agency by id")
 	@PutMapping("/{id}")
-	public ResponseEntity<Agency> Put(@PathVariable Long id, @RequestBody Agency agency) {
+	public ResponseEntity<Agency> Put(@ApiParam(value = "id", required = true) @PathVariable Long id,
+			@ApiParam(value = "Agency", required = true) @RequestBody Agency agency) {
 		Agency newAgency = agencyService.update(id, agency);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(newAgency);
 	}
 
+	@ApiOperation(value = "Delete an agency by id", notes = "This method deletes an agency by id")
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> Delete(@PathVariable Long id) {
+	public ResponseEntity<Void> Delete(@ApiParam(value = "id", required = true) @PathVariable Long id) {
 		agencyService.delete(id);
 		return ResponseEntity.noContent().build();
 	}

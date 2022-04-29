@@ -14,22 +14,33 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "Account", description = "Account Model")
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "typeAccount", length = 1, discriminatorType = DiscriminatorType.STRING)
 public class Account {
 
+	@ApiModelProperty(hidden = true)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@ApiModelProperty(value = "number", example = "123456789", required = true)
 	private String number;
+	@ApiModelProperty(value = "balance", example = "100.00", required = true)
 	private double balance;
+	@ApiModelProperty(value = "typeAccount", example = "C", required = true)
 	@Column(insertable = false, updatable = false)
 	private String typeAccount;
+	@ApiModelProperty(value = "client", example = "1", required = true)
 	@OneToOne
 	private Client client;
+	@ApiModelProperty(value = "agency", example = "1", required = true)
 	@ManyToOne
 	private Agency agency;
+	@ApiModelProperty(value = "id", example = "1", required = true)
 	@OneToOne
 	private CreditCard creditCard;
 

@@ -11,18 +11,28 @@ import javax.persistence.ManyToOne;
 
 import com.bankAccountManagement.finalProjectWipro.model.enums.HistoricType;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+@ApiModel(value = "Historic", description = "Historic Model")
 @Entity
 public class Historic {
 
+	@ApiModelProperty(hidden = true)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@ApiModelProperty(value = "accountNumberOrigin", example = "1", required = true)
 	private Long accountNumberOrigin;
+	@ApiModelProperty(value = "accountNumberDestiny", example = "2", required = true)
 	private Long accountNumberDestiny;
+	@ApiModelProperty(value = "historicData", example = "2022-04-29", required = true)
 	private LocalDateTime historicData = LocalDateTime.now();
+	@ApiModelProperty(value = "historicType", example = "deposit", required = true)
 	private HistoricType historicType;
+	@ApiModelProperty(value = "movedValue", example = "1000.00", required = true)
 	private double movedValue;
+	@ApiModelProperty(value = "id", example = "1", required = true)
 	@ManyToOne
 	private Account account;
 

@@ -7,14 +7,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "Agency", description = "Agency Model")
 @Entity
 public class Agency {
 
+	@ApiModelProperty(hidden = true)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@ApiModelProperty(value = "agencyName", example = "BoosterBank", required = true)
 	private String agencyName;
+	@ApiModelProperty(value = "agencyNumber", example = "123", required = true)
 	private String agencyNumber;
+	@ApiModelProperty(value = "cnpj", example = "123456789", required = true)
 	private String cnpj;
 
 	public Long getId() {

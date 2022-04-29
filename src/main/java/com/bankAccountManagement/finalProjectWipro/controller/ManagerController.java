@@ -19,6 +19,11 @@ import com.bankAccountManagement.finalProjectWipro.model.Manager;
 import com.bankAccountManagement.finalProjectWipro.service.AgencyService;
 import com.bankAccountManagement.finalProjectWipro.service.ManagerService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
+@Api(value = "Manager", tags = "Manager", description = "Manager routes")
 @RestController
 @RequestMapping(value = "/manager", consumes = { "application/json" }, produces = { "application/json" })
 @CrossOrigin("*")
@@ -29,32 +34,39 @@ public class ManagerController {
 	@Autowired
 	private AgencyService agencyService;
 
+	@ApiOperation(value = "Returns a manager by id", notes = "This method returns a manager by id")
 	@GetMapping("/{id}")
-	public ResponseEntity<Manager> GetById(@PathVariable Long id) {
+	public ResponseEntity<Manager> GetById(@ApiParam(value = "id", required = true) @PathVariable Long id) {
 		Manager manager = managerService.findById(id);
 		return ResponseEntity.ok().body(manager);
 	}
 
+	@ApiOperation(value = "Returns all managers", notes = "This method returns all managers")
 	@GetMapping
 	public ResponseEntity<List<Manager>> GetAll() {
 		List<Manager> list = managerService.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 
+	@ApiOperation(value = "Create a new manager", notes = "This method creates a new manager")
 	@PostMapping
-	public ResponseEntity<Manager> PostByAgency(@RequestBody Manager manager) {
+	public ResponseEntity<Manager> PostByAgency(
+			@ApiParam(value = "Manager", required = true) @RequestBody Manager manager) {
 		manager.setAgency(agencyService.findById(manager.getAgency().getId()));
 		return ResponseEntity.status(HttpStatus.GONE).body(managerService.create(manager));
 	}
 
+	@ApiOperation(value = "Update a manager by id", notes = "This method updates a manager by id")
 	@PutMapping("/{id}")
-	public ResponseEntity<Manager> Put(@PathVariable Long id, @RequestBody Manager manager) {
+	public ResponseEntity<Manager> Put(@ApiParam(value = "id", required = true) @PathVariable Long id,
+			@ApiParam(value = "Manager", required = true) @RequestBody Manager manager) {
 		Manager newManager = managerService.update(id, manager);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(newManager);
 	}
 
+	@ApiOperation(value = "Delete a manager by id", notes = "This method deletes a manager by id")
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> Delete(@PathVariable Long id) {
+	public ResponseEntity<Void> Delete(@ApiParam(value = "id", required = true) @PathVariable Long id) {
 		managerService.delete(id);
 		return ResponseEntity.noContent().build();
 	}

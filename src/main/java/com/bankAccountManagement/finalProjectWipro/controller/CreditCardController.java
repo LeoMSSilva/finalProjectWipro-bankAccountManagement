@@ -18,6 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bankAccountManagement.finalProjectWipro.model.CreditCard;
 import com.bankAccountManagement.finalProjectWipro.service.CreditCardService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
+@Api(value = "CreditCard", tags = "Credit Card", description = "Credit Card routes")
 @RestController
 @RequestMapping(value = "/creditCard", consumes = { "application/json" }, produces = { "application/json" })
 @CrossOrigin("*")
@@ -26,31 +31,38 @@ public class CreditCardController {
 	@Autowired
 	private CreditCardService creditCardService;
 
+	@ApiOperation(value = "Returns a credit card by id", notes = "This method returns a credit card by id")
 	@GetMapping("/{id}")
-	public ResponseEntity<CreditCard> GetById(@PathVariable Long id) {
+	public ResponseEntity<CreditCard> GetById(@ApiParam(value = "id", required = true) @PathVariable Long id) {
 		CreditCard creditCard = creditCardService.findById(id);
 		return ResponseEntity.ok().body(creditCard);
 	}
 
+	@ApiOperation(value = "Returns all credit cards", notes = "This method returns all credit cards")
 	@GetMapping
 	public ResponseEntity<List<CreditCard>> GetAll() {
 		List<CreditCard> list = creditCardService.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 
+	@ApiOperation(value = "Create a credit card by id", notes = "This method creates a credit card by id")
 	@PostMapping
-	public ResponseEntity<CreditCard> Post(@RequestBody CreditCard creditCard) {
+	public ResponseEntity<CreditCard> Post(
+			@ApiParam(value = "CreditCard", required = true) @RequestBody CreditCard creditCard) {
 		return ResponseEntity.status(HttpStatus.GONE).body(creditCardService.create(creditCard));
 	}
 
+	@ApiOperation(value = "Update a credit card by id", notes = "This method updates a credit card by id")
 	@PutMapping("/{id}")
-	public ResponseEntity<CreditCard> Put(@PathVariable Long id, @RequestBody CreditCard creditCard) {
+	public ResponseEntity<CreditCard> Put(@ApiParam(value = "id", required = true) @PathVariable Long id,
+			@ApiParam(value = "CreditCard", required = true) @RequestBody CreditCard creditCard) {
 		CreditCard newCreditCard = creditCardService.update(id, creditCard);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(newCreditCard);
 	}
 
+	@ApiOperation(value = "Delete a credit card by id", notes = "This method deletes a credit card by id")
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> Delete(@PathVariable Long id) {
+	public ResponseEntity<Void> Delete(@ApiParam(value = "id", required = true) @PathVariable Long id) {
 		creditCardService.delete(id);
 		return ResponseEntity.noContent().build();
 	}

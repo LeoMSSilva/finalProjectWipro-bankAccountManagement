@@ -21,6 +21,11 @@ import com.bankAccountManagement.finalProjectWipro.service.ClientService;
 import com.bankAccountManagement.finalProjectWipro.service.CreditCardService;
 import com.bankAccountManagement.finalProjectWipro.service.SpecialAccountService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
+@Api(value = "Special Account", tags = "Special Account", description = "Special Account routes")
 @RestController
 @RequestMapping(value = "/specialAccount", consumes = { "application/json" }, produces = { "application/jsonthis" })
 @CrossOrigin("*")
@@ -35,20 +40,24 @@ public class SpecialAccountController {
 	@Autowired
 	private CreditCardService creditCardService;
 
+	@ApiOperation(value = "Returns a special account by id", notes = "This method returns a special account by id")
 	@GetMapping("/{id}")
-	public ResponseEntity<SpecialAccount> GetById(@PathVariable Long id) {
+	public ResponseEntity<SpecialAccount> GetById(@ApiParam(value = "id", required = true) @PathVariable Long id) {
 		SpecialAccount specialAccount = specialAccountService.findById(id);
 		return ResponseEntity.ok().body(specialAccount);
 	}
 
+	@ApiOperation(value = "Returns all special accounts", notes = "This method returns all special accounts")
 	@GetMapping
 	public ResponseEntity<List<SpecialAccount>> GetAll() {
 		List<SpecialAccount> list = specialAccountService.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 
+	@ApiOperation(value = "Create a special account by id", notes = "This method creates a special account by id")
 	@PostMapping
-	public ResponseEntity<SpecialAccount> Post(@RequestBody SpecialAccount specialAccount) {
+	public ResponseEntity<SpecialAccount> Post(
+			@ApiParam(value = "Special Account", required = true) @RequestBody SpecialAccount specialAccount) {
 		specialAccount.setAgency(agencyService.findById(specialAccount.getAgency().getId()));
 		specialAccount.setCreditCard(creditCardService.findById(specialAccount.getCreditCard().getId()));
 		specialAccount.setClient(clientService.findById(specialAccount.getClient().getId()));
@@ -56,14 +65,17 @@ public class SpecialAccountController {
 		return ResponseEntity.status(HttpStatus.GONE).body(specialAccountService.create(specialAccount));
 	}
 
+	@ApiOperation(value = "Update a special account by id", notes = "This method updates a special account by id")
 	@PutMapping("/{id}")
-	public ResponseEntity<SpecialAccount> Put(@PathVariable Long id, @RequestBody SpecialAccount specialAccount) {
+	public ResponseEntity<SpecialAccount> Put(@ApiParam(value = "id", required = true) @PathVariable Long id,
+			@ApiParam(value = "Special Account", required = true) @RequestBody SpecialAccount specialAccount) {
 		SpecialAccount newSpecialAccount = specialAccountService.update(id, specialAccount);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(newSpecialAccount);
 	}
 
+	@ApiOperation(value = "Delete a special account by id", notes = "This method deletes a special account by id")
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> Delete(@PathVariable Long id) {
+	public ResponseEntity<Void> Delete(@ApiParam(value = "id", required = true) @PathVariable Long id) {
 		specialAccountService.delete(id);
 		return ResponseEntity.noContent().build();
 	}

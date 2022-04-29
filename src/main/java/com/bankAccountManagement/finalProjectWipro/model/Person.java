@@ -7,14 +7,22 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "Person", description = "Person Model")
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Person {
+	@ApiModelProperty(hidden = true)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@ApiModelProperty(value = "cpf", example = "12345678910", required = true)
 	private String cpf;
+	@ApiModelProperty(value = "name", example = "Jhon", required = true)
 	private String name;
+	@ApiModelProperty(value = "address", example = "901 Chapala St", required = true)
 	private String address;
 
 	public Long getId() {

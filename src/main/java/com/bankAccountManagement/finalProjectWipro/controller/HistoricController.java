@@ -16,6 +16,11 @@ import com.bankAccountManagement.finalProjectWipro.repository.HistoricRepository
 import com.bankAccountManagement.finalProjectWipro.service.AccountService;
 import com.bankAccountManagement.finalProjectWipro.service.HistoricService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
+@Api(value = "Historic", tags = "Historic", description = "Historic routes")
 @RestController
 @RequestMapping(value = "/historic", consumes = { "application/json" }, produces = { "application/json" })
 @CrossOrigin("*")
@@ -28,13 +33,15 @@ public class HistoricController {
 	@Autowired
 	private AccountService accountService;
 
+	@ApiOperation(value = "Returns the history of an account", notes = "This method returns the history of an account")
 	@GetMapping("/{id}")
-	public ResponseEntity<List<Historic>> GetById(@PathVariable Long id) {
+	public ResponseEntity<List<Historic>> GetById(@ApiParam(value = "id", required = true) @PathVariable Long id) {
 		Account account = accountService.findById(id);
 		List<Historic> historic = historicRepository.findByAccount(account);
 		return ResponseEntity.ok().body(historic);
 	}
 
+	@ApiOperation(value = "Returns the history of all accounts", notes = "This method returns the history of all accounts")
 	@GetMapping
 	public ResponseEntity<List<Historic>> GetAll() {
 		List<Historic> historic = historicService.findAll();

@@ -7,14 +7,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "CreditCard", description = "CreditCard Model")
 @Entity
 public class CreditCard {
 
+	@ApiModelProperty(hidden = true)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@ApiModelProperty(value = "cardNumbering", example = "123456789", required = true)
 	private String cardNumbering;
+	@ApiModelProperty(value = "cvv", example = "789", required = true)
 	private String cvv;
+	@ApiModelProperty(value = "creditLimit", example = "1000.00", required = true)
 	private double creditLimit;
 
 	public Long getId() {
