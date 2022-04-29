@@ -17,7 +17,13 @@
 - :dart: [Installation](#dart-installation)
 - :rocket: [Getting started](#rocket-getting-started)
 - :computer: [Techs](#computer-techs)
-- :bust_in_silhouette: [Author](#bust_in_silhouette-author)
+- :bar_chart: [Diagrams](#bar_chart-diagrams)
+  - [UML - Use Case and Class Diagrams](#uml---use-case-and-class-diagrams)
+  - [Entity and Relationship Diagram](#entity-and-relationship-diagram)
+- :cyclone: [Tests](#cyclone-tests)
+  - [Test in Postman](#test-in-postman)
+  - [Unit Test](#unit-test)
+- :bust_in_silhouette: [Authors](#bust_in_silhouette-authors)
 - :handshake: [Contributing](#handshake-contributing)
 - :scroll: [License](#scroll-license)
 
@@ -38,6 +44,8 @@ This project was developed with **Java**, using **Spring Boot** and **Spring Dat
 **Postman** and **insomnia** were used to perform **functional tests**.
 
 **Swagger** was used to create the documentation, along with the interactive front-end **Swagger UI**.
+
+**Heroku** was used to host the api with its documentation.
 
 This api represents the creation of Spring Booster bank with current account and special account operations.
 
@@ -77,6 +85,8 @@ Or by ssh, running this command:
 
 SSH is a secure protocol, but you need to register a key ssh in your github before.
 
+---
+
 # :rocket: Getting Started
 
 Once all dependencies are downloaded, installed and configured correctly, you will need to create your environment variables in eclipse:
@@ -103,6 +113,7 @@ Access endpoints through **[swagger](https://booster-bank-api.herokuapp.com/swag
 
 # :computer: Techs
 
+- Heroku
 - Java
 - JUnit
 - Maven
@@ -118,8 +129,45 @@ Access endpoints through **[swagger](https://booster-bank-api.herokuapp.com/swag
 - Swagger UI
 
 ---
+# :bar_chart: Diagrams
 
-# :bust_in_silhouette: Author
+We work with the following diagrams:
+
+# UML - Use Case and Class Diagrams
+
+<h1 align="center">	
+<img src="https://github.com/LeoMSSilva/finalProjectWipro-bankAccountManagement/blob/main/assets/UML-UseCaseDiagram.png" alt="UML - Use Case Diagram" width="300"/>&nbsp;<img src="https://github.com/LeoMSSilva/finalProjectWipro-bankAccountManagement/blob/main/assets/UML-ClassDiagram.png"  alt="UML - Class Diagram"  width="300"/>
+</h1>
+
+# Entity and Relationship Diagram
+
+<h1 align="center">	
+  <img src="https://github.com/LeoMSSilva/finalProjectWipro-bankAccountManagement/blob/main/assets/EntityAndRelationshipDiagram.png" alt="Entity And Relationship Diagram" width="600"/>
+</h1>
+
+---
+
+# :cyclone: Tests
+
+We work with the following tests:
+
+# Test in Postman
+
+Project running locally and having its endpoints tested through the Postman application.
+
+![Testing At The Postman](https://github.com/LeoMSSilva/finalProjectWipro-bankAccountManagement/blob/main/assets/TestingAtThePostman.gif)
+
+# Unit Test
+
+We used the Junit frameworks in version 5, and mockito, to move the data so that it was not persisted in the database. 
+
+They were tested in the service pack classes.
+
+![testee](https://user-images.githubusercontent.com/86155080/166067310-d934bb58-58d7-434f-8280-176b9756f851.png)
+
+---
+
+# :bust_in_silhouette: Authors
 
 | Collaborator | <img src="https://github.com/LeoMSSilva.png" alt="@LeoMSSilva" width="100"/> |     <img src="https://github.com/EdersonDeMelo.png" width="100"/>     | <img src="https://github.com/israelld.png" width="100"/> |     <img src="https://github.com/jefersonfavero.png" width="100"/>      |     <img src="https://github.com/Nathybozzon.png" width="100"/>      |
 | :----------- | :--------------------------------------------------------------------------: | :-------------------------------------------------------------------: | :------------------------------------------------------: | :---------------------------------------------------------------------: | :------------------------------------------------------------------: |
@@ -136,8 +184,9 @@ Contributions, issues and feature requests are welcome! Feel free to **file a ne
 
 # :scroll: License
 
-Copyright :copyright: 2021 [LeoMSSilva](https://github.com/LeoMSSilva).
+Copyright :copyright: 2022 [@LeoMSSilva](https://github.com/LeoMSSilva), [@EdersonDeMelo](https://github.com/EdersonDeMelo), [@israelld](https://github.com/israelld), [@jefersonfavero](https://github.com/jefersonfavero) and [@Nathybozzon](https://github.com/Nathybozzon).
+
 <br/>
-This project is [MIT](https://github.com/LeoMSSilva/finalProjectWipro-bankAccountManagement/blob/main/LICENSE) licensed.
+This project is [MIT](https://github.com/LeoMSSilva/finalProjectWipro-bankAccountManagement/blob/main/assets/LICENSE) licensed.
 
 ---

@@ -83,11 +83,11 @@ public class Historic {
 		this.accountNumberDestiny = accountNumberDestiny;
 	}
 
-	public LocalDateTime getHistoric_data() {
+	public LocalDateTime getHistoricData() {
 		return historicData;
 	}
 
-	public void setHistoric_data(LocalDateTime historicData) {
+	public void setHistoricData(LocalDateTime historicData) {
 		this.historicData = historicData;
 	}
 
